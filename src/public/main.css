@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Gabriela');
+
+a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+.main-header
+{
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #b1aeae;
+}
+
+.main-icon 
+{
+    height: 64px;
+    width: 41px;
+    margin: 16px 0 0 0;
+}
+
+.main-headline
+{
+    font-size: 56px;
+    margin:  5px 0 30px  0;
+}
+
+.main-headline a span
+{
+    color: #f49cc4;
+    font-weight: bold;
+}
+
+main
+{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* стили для приключений (главная страница) */
+
+.adventure
+{
+    display: flex;
+    margin-top: 40px;
+}
+
+.adventure-picture img
+{
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    margin: 0 50px 0 80px;
+}
+
+.adventure-name
+{
+    font-size: 35px;
+    font-family: 'Gabriela', sans-serif;
+    margin: 0 0 15px ;
+}
+
+.adventure-text
+{
+    max-width: 600px;
+    font-size: 15px;
+}
+
+/* стили для хэштегов */
+
+.hashtag
+{
+    font-size: 45px;
+    margin: 30px 70px 0;
+}
+
+.adventure-hashtags
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    max-width: 600px;
+}
+
+.adventure-hashtag
+{
+    background-color: #808080;
+    opacity: .8;
+    padding: 5px;
+    margin: 10px 10px;
+    border-radius: 5px;
+}
+
+.adventure-hashtag:hover
+{
+    opacity: 1;
+}
+
+.adventure-hashtag-link
+{
+    color: #fff;
+    font-size: 25px;
+}
+
+/* стили для сцен */
+
+.scene-container
+{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 30px auto;
+
+}
+
+.scene-position
+{
+    position: relative;
+}
+
+.scene-picture
+{
+    width: 950px;
+    height: 380px;
+}
+
+.scene-text
+{
+    position: absolute;
+    font-family: 'Gabriela', sans-serif;
+    max-width: 800px;
+    color: #fff;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.scene-text.bl
+{
+    bottom: 0;
+    left: 0;
+}
+
+.scene-text.br
+{
+    bottom: 0;
+    right: 0;
+}
+
+.scene-text.tl
+{
+    top: 0;
+    left: 0;
+}
+
+.scene-text.tr
+{
+    top: 0;
+    right: 0;
+}
+
+/* стили для действий сцен */
+
+.scene-actions
+{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.scene-action
+{
+    background-color: #474646;
+    opacity: .8;
+    padding: 15px;
+    margin: 0 30px;
+}
+
+.scene-action:hover
+{
+    opacity: 1;
+}
+
+.scene-action-link
+{
+    color: #fff;
+    font-size: 35px;
+}
+
+/* стили для достижений сцен */
+
+.scene-achievements
+{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 20px 200px 0;
+}
+
+.scene-achievement
+{
+    display: flex;
+    margin: 10px 10px;
+}
+
+.scene-achievement-picture
+{
+    border-radius: 100px;
+}
+
+.scene-achievement-name
+{
+    font-size: 25px;
+    margin: 30px 10px 0;
+}
+
+.scene-achievement-name div
+{
+    font-size: 30px;
+    font-family: 'Gabriela', sans-serif;
+    max-width: 200px;
+}
+
+/* Ошибка */
+
+.error-container
+{
+    font-size: 50px;
+    font-family: 'Gabriela', sans-serif;
+}

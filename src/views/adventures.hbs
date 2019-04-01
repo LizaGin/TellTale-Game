@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ staticBasePath }}main.css">
+    <title>Telltail Games</title>
+</head>
+<body>
+    <header class="main-header">
+        <div width="41" height="64" class="main-icon">
+            <a href="/">
+                <img src="{{ staticBasePath }}icon.svg" alt="">
+            </a>
+        </div>
+        <div class="main-headline">
+            <a href="/"><span>Telltail</span> Games</a>
+        </div>
+    </header>
+    <main class="general-layout">
+        <article id="adventures" class="adventures-container">
+            {{> adventure}}
+        </article>
+    </main>
+</body>
+</html>

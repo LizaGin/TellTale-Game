@@ -1,0 +1,20 @@
+{{#each adventures}}
+    {{#if firstSceneId}}
+        <section class="adventure">
+            <div class="adventure-picture"><a href="/scene/{{firstSceneId}}">
+                <img width="200" height="150" src={{picture}}></a>
+            </div>
+            <div class="adventure-description">
+                <a class="adventure-name" href="/scene/{{firstSceneId}}">{{name}}</a>
+                <div class="adventure-text">{{text}}</div>
+                <div class="adventure-hashtags">
+                    {{#each hashtags}}
+                        <div class="adventure-hashtag">
+                            <a class="adventure-hashtag-link" href="/hashtag/{{slug}}">#{{name}}</a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </section>
+    {{/if}}
+{{/each}}

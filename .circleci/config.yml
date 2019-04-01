@@ -1,0 +1,41 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: npm run deps:all
+
+      - run:
+          name: Build application
+          command: npm run build
+
+      - run:
+          name: Lint application (css, js, ts and dependencies)
+          command: npm run lint
+
+      - run:
+          name: Deploy static files to Surge
+          command: npm run ci:surge
+
+      - setup_remote_docker
+
+      - run:
+          name: Login at Heroku Docker Registry
+          command: npm run ci:heroku:login
+
+      - run:
+          name: Build Docker image
+          command: npm run ci:heroku:build
+
+      - run:
+          name: Push Docker image to the Heroku
+          command: npm run ci:heroku:push
+
+      - run:
+          name: Run Docker container
+          command: npm run ci:heroku:release

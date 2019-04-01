@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ staticBasePath }}main.css">
+    <title>Telltail Games</title>
+</head>
+<body>
+    <header class="main-header">
+        <div width="41" height="64" class="main-icon">
+            <a href="/">
+                <img src="{{ staticBasePath }}icon.svg" alt="">
+            </a>
+        </div>
+        <div class="main-headline">
+            <a href="/"><span>Telltail</span> Games</a>
+        </div>
+    </header>
+    <main class="general-layout">
+        <article class="scene">
+            <section class="scene-container">
+                <div class="scene-position">
+                    <img width="950" height="380" class="scene-picture" src="{{scene.picture}}">
+                        {{#if_eq scene.picturePosition  'BL'}}
+                            <div class="scene-text bl"> {{scene.text}} </div>
+                        {{/if_eq}}
+                        {{#if_eq scene.picturePosition  'BR'}}
+                            <div class="scene-text br"> {{scene.text}} </div>
+                        {{/if_eq}}
+                        {{#if_eq scene.picturePosition  'TL'}}
+                            <div class="scene-text tl"> {{scene.text}} </div>
+                        {{/if_eq}}
+                        {{#if_eq scene.picturePosition  'TR'}}
+                            <div class="scene-text tr"> {{scene.text}} </div>
+                        {{/if_eq}}
+                </div>
+            </section>
+
+            <section class="scene-achievements">
+                {{#each scene.achievements}}
+                    <div class="scene-achievement">
+                        <img class="scene-achievement-picture" width="150" height="150" src="{{picture}}">
+                        <div class="scene-achievement-name">Достижение получено 
+                            <div>{{name}}</div>
+                        </div>
+                    </div>
+                {{/each}}
+            </section>
+            <section class="scene-actions">
+                {{#if scene.actions}}
+                    {{#each scene.actions}}
+                        <div class="scene-action">
+                            <a class="scene-action-link" href="{{id}}">{{name}}</a>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <div class="scene-action">
+                        <a class="scene-action-link" href="{{scene.adventure.firstSceneId}}">
+                            Начать заново?
+                        </a>
+                   </div>
+                    <div class="scene-action">
+                        <a class="scene-action-link" href="/">На главную</a>
+                    </div>
+                {{/if}}
+            </section>
+        </article>
+    </main>
+</body>
+</html>
