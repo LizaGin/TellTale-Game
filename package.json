@@ -45,11 +45,11 @@
     "body-parser": "^1.18.3",
     "config": "^3.0.1",
     "express": "^4.16.4",
-    "hbs": "^4.0.3",
+    "hbs": "^4.0.4",
     "morgan": "^1.9.1",
     "pg": "^7.9.0",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "^5.2.8",
+    "sequelize": "^5.8.0",
     "sequelize-typescript": "^1.0.0-alpha.9"
   },
   "devDependencies": {

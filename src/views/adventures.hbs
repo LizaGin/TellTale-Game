@@ -16,9 +16,32 @@
         </div>
     </header>
     <main class="general-layout">
+        <article class="finder" id="search-form">
+            <div class="search-line">
+                <input type="text"
+                    id="search-line-adventure"
+                    class="search-line-adventure"
+                    placeholder="Текст запроса">
+                </input>
+                <button id="search-button"class="search-button">Найти</button>
+            </div>
+            <div class="search-line">
+                <div id="adventure-hashtags" class="adventure-hashtags search"></div>
+                <div class="adventure-hashtags-search">
+                    <input type="text"
+                        id="search-line-hashtag"
+                        class="search-line-hashtag"
+                        placeholder="Хэштег"
+                        autocomplete="off">
+                    </input>
+                    <div id="hashtag-list" class="hashtag-list"></div>
+                </div>
+            </div>
+        </article>
         <article id="adventures" class="adventures-container">
             {{> adventure}}
         </article>
     </main>
+    <script src="{{ staticBasePath }}script.js"></script>
 </body>
 </html>

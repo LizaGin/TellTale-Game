@@ -18,7 +18,6 @@ hashtagRouter.get('/:hashtag', (req, res) => {
         .then((hashtag) => {
             const data = { adventures: hashtag ? hashtag.adventures : [], staticBasePath, hashtagName};
             res.render('hashtags', data );
-            console.info(hashtag, hashtagName);
         });
     }
 );

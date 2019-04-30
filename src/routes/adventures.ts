@@ -11,7 +11,8 @@ adventureRouter.get('/', (_req, res) =>
     Adventure.findAll({
         include: [{
                 model: Hashtag
-            }]
+            }],
+        limit: 5
         })
         .then((adventures) => {
             const data = {staticBasePath, adventures};
