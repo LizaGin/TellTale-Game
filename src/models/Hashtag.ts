@@ -1,6 +1,14 @@
-import { AllowNull, BelongsToMany, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { Adventure } from './Adventure';
-import { AdventureHashtag } from './AdventureHashtag';
+import {
+    AllowNull,
+    BelongsToMany,
+    Column,
+    DataType,
+    Model,
+    PrimaryKey,
+    Table
+} from 'sequelize-typescript';
+import {Adventure} from './Adventure';
+import {AdventureHashtag} from './AdventureHashtag';
 
 @Table({
     tableName: 'hashtags'

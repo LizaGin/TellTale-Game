@@ -8,19 +8,23 @@ import {
 } from 'sequelize-typescript';
 
 import {Adventure} from './Adventure';
-import {Hashtag} from './Hashtag';
+import {User} from './User';
 
 @Table({
-    tableName: 'adventuresHashtags'
+    tableName: 'users_adventures'
 })
-export class AdventureHashtag extends Model<AdventureHashtag> {
+export class UserAdventure extends Model<UserAdventure> {
+    @AllowNull(false)
+    @ForeignKey(() => User)
+    @Column(DataType.STRING)
+    idUser: string;
+
     @AllowNull(false)
     @ForeignKey(() => Adventure)
     @Column(DataType.INTEGER)
-    adventureId: number;
+    idAdventure: number;
 
     @AllowNull(false)
-    @ForeignKey(() => Hashtag)
     @Column(DataType.INTEGER)
-    hashtagId: number;
+    count: number;
 }

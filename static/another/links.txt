@@ -1,0 +1,26 @@
+то, что должно быть в конфиге
+postgres://postgres:postgres@localhost:5432/postgres
+
+моя база
+postgres://bkqeobil:3WKYmNFR8QiI5QRNGAPekw1JxiMlRVKX@manny.db.elephantsql.com:5432/bkqeobil
+
+ACHIEVEMENTS
+achieve-it: https://cdnb.artstation.com/p/assets/images/images/012/765/841/large/xavier-barnes-the-it-balloon-create-with-cycles-blender-to-1000-sampling.jpg?1536401936
+achieve-ps: https://i.pinimg.com/236x/35/92/43/359243f3dc827d283b424ab61b262776--zombie-cat-art-zombie.jpg
+achieve-ps-2: https://res.cloudinary.com/teepublic/image/private/s--n659SZ2O--/c_crop,x_10,y_10/c_fit,w_1109/c_crop,g_north_west,h_945,w_1260,x_-76,y_-76/co_rgb:ffffff,e_colorize,u_Misc:One%20Pixel%20Gray/c_scale,g_north_west,h_945,w_1260/fl_layer_apply,g_north_west,x_-76,y_-76/bo_157px_solid_white/e_overlay,fl_layer_apply,h_945,l_Misc:Art%20Print%20Bumpmap,w_1260/e_shadow,x_6,y_6/c_limit,h_1134,w_1134/c_lpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_jpg,h_630,q_90,w_630/v1496261624/production/designs/1637621_1.jpg
+
+ADVENTURES
+IT-1: http://posterposse.com/wp-content/uploads/2017/08/Pennywise-IT-Poster-Posse-Garofalo.png
+GG-1: https://cs8.pikabu.ru/post_img/big/2016/09/17/8/1474115173169737920.jpg
+PS-1: https://www.syfy.com/sites/syfy/files/styles/1140x640/public/2019/03/bella.png?timestamp=1553826793
+PS-2: https://static.tvno.nu/3066742?forceFit=0&height=760&quality=50&width=1350
+
+
+SCENES
+gg-1: https://images-na.ssl-images-amazon.com/images/I/A12vX6KIGxL.png
+gg-2: http://i92.mindmix.ru/95/60/366095/27/7687327/79.jpeg
+gg-3: https://www.film.ru/sites/default/files/styles/thumb_1024x450/public/32930025-997707.jpg
+
+it-11:
+
+ps-21:

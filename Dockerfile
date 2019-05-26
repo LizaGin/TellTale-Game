@@ -2,6 +2,7 @@ FROM node:10
 
 COPY config /config
 COPY dist /dist
+COPY next.config.js /
 COPY package.json /
 COPY package-lock.json /
 

@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
-      "rootDir": "src/",
+      "rootDir": ".",
       "outDir": "dist/",
   
-      "baseUrl": "src/",
+      "baseUrl": "./src/",
   
       "target": "es2018",
-      "lib": ["es2018"],
+      "lib": ["dom", "es2018"],
       "module": "commonjs",
       "resolveJsonModule": true,
       "sourceMap": true,
@@ -21,9 +21,12 @@
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
 
-      "strictPropertyInitialization": false
-    },
-    "exclude": [
-      "config/"
-    ]
+      "strictPropertyInitialization": false,
+      
+      "jsx": "react",
+
+      "typeRoots": [
+        "./@types"
+      ]
+    }
   }

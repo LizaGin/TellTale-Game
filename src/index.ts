@@ -1,119 +1,164 @@
-import path from 'path';
+// Import path from 'path';
 
 import bodyParser from 'body-parser';
 import config from 'config';
 import express, {NextFunction as Next, Request, Response} from 'express';
-import hbs from 'hbs';
+import 'isomorphic-fetch';
+import nextjs from 'next';
 import {Op} from 'sequelize';
 
+import {parse} from 'url';
+import {adventureRouter} from './controllers/adventures';
+import {hashtagRouter} from './controllers/hashtags';
+import {sceneRouter} from './controllers/scenes';
+import {userSignIn, userSignUp} from './controllers/user';
 import db from './db';
-import { Adventure } from './models/Adventure';
-import { Hashtag } from './models/Hashtag';
-import adventureRoute from './routes/adventures';
-import hashtagRoute from './routes/hashtags';
-import sceneRoute from './routes/scenes';
+import render from './middlewares/render';
+import {Adventure} from './models/Adventure';
+import {Hashtag} from './models/Hashtag';
+import { UserAdventure } from './models/UserAdventure';
+import { User } from './models/User';
 
 const app = express();
 
-app.set('view engine', 'hbs');
+// Const publicDir = path.join(__dirname, 'public');
 
-const viewsDir = path.join(__dirname, 'views');
+const nextApp = nextjs({dev: process.env.NODE_ENV !== 'production'});
 
-const partialsDir = path.join(viewsDir, 'partials');
+// App.use(express.static(publicDir));
 
-const publicDir = path.join(__dirname, 'public');
+app.use(bodyParser.json({limit: '10mb'}));
 
-app.set('views', viewsDir);
+app.use(render(nextApp));
 
-app.use(bodyParser.json());
+app.use('/api/hashtag/:hashtag', hashtagRouter);
 
-app.use(express.static(publicDir));
+app.use('/api/scene/:id', sceneRouter);
 
-app.use('/hashtag', hashtagRoute);
+app.post('/api/adventures', (req, res) => {
+    const partOfAdventure: string = req.body.adventure;
+    const hashtagsSearch: string[] = req.body.hashtags;
+    const limit = req.query.limit;
+    const offset = req.query.offset;
 
-app.use('/scene', sceneRoute);
+    let where = {};
+    if (partOfAdventure) {
+        where = {
+            [Op.or]: [
+                {name: {[Op.iLike]: `%${partOfAdventure}%`}},
+                {text: {[Op.iLike]: `%${partOfAdventure}%`}}
+            ]
+        };
+    }
 
-app.use('/', adventureRoute);
+    let include: any[] = [];
+    if (hashtagsSearch.length) {
+        include = [
+            {
+                model: Hashtag,
+                where: {name: {[Op.in]: hashtagsSearch}}
+            }
+        ];
+    }
 
-app.get('/api/hashtags' , (req, res) => {
+    Adventure.findAll({
+        attributes: ['id'],
+        include,
+        limit,
+        offset,
+        where
+    })
+        .then(adventures => {
+            return Adventure.findAll({
+                include: [{model: Hashtag}, {model: User}],
+                where: {
+                    id: {[Op.in]: adventures.map(adventure => adventure.id)}
+                }
+            });
+        })
+        .then(adventures => res.json(adventures));
+});
+
+app.use('/api/adventures', adventureRouter);
+
+app.post('/api/signup', userSignUp);
+
+app.post('/api/signin', userSignIn);
+
+app.get('/api/hashtags', (req: Request, res: Response) => {
     const partOfHashtag = req.query.filter;
 
-    Hashtag
-      .findAll({where: {name: {[Op.like]: `%${partOfHashtag}%`}}})
-      .then((hashtags) => res.json(hashtags));
-
+    Hashtag.findAll({where: {name: {[Op.like]: `%${partOfHashtag}%`}}}).then(
+        hashtags => res.json(hashtags)
+    );
 });
 
-app.post('/api/adventures' , (req, res) => {
-  const partOfAdventure: string = req.body.adventure;
-  const hashtagsSearch: string[] = req.body.hashtags;
-  console.info(hashtagsSearch);
-  const limit = req.query.limit;
-  const offset = req.query.offset;
+app.post('/api/user_adventures', (req, _res) => {
+    const idAdventure = req.body.idAdventure;
+    const idUser = req.body.idUser;
 
-  let where = {};
-  if (partOfAdventure) {
-    where = {
-        [Op.or] : [
-          {name: {[Op.iLike]: `%${partOfAdventure}%`}},
-          {text: {[Op.iLike]: `%${partOfAdventure}%`}}
-        ]
-      };
-  }
-
-  let include: any[] = [];
-  if (hashtagsSearch.length) {
-    include = [{
-      model: Hashtag,
-      where: {name: {[Op.in] : hashtagsSearch}},
-    }];
-  }
-
-  Adventure.findAll({
-    attributes: ['id'],
-    include,
-    limit,
-    offset,
-    where
-  }).then((adventures) => {
-   return Adventure.findAll({
-      include: [{model: Hashtag}],
-      where: {
-        id: {[Op.in]: adventures.map((adventure) => adventure.id)}
-      }
+    UserAdventure.findOne({
+        where: {
+            [Op.and]: {
+                idUser: idUser,
+                idAdventure: idAdventure
+            }
+        }
+    }).then(obj => {
+        if(obj){
+            const count = obj.count + 1;
+            obj.update({count})
+        } else {
+            const count  = 1;
+            UserAdventure.create({idUser, idAdventure, count});
+        }
     });
-  }).then((adventures) => res.json(adventures));
-});
+})
+
+app.get('/', (_req, res) => res.renderPage('/adventures'));
+
+app.get('/adventures', (_req, res) => res.renderPage('/adventures'));
+
+app.get('/hashtag/:hashtag', (req, res) =>
+    res.renderPage('/hashtag', {hashtag: req.params.hashtag})
+);
+
+app.get('/scene/:id', (req, res) =>
+    res.renderPage('/scene', {id: req.params.id})
+);
+
+app.get('/signin', (_req, res) => res.renderPage('/signin'));
+
+app.get('/signup', (_req, res) => res.renderPage('/signup'));
 
 const error404 = (_req: Request, res: Response) => res.sendStatus(404);
 
-app.all('*', error404);
+app.all('/api/*', error404);
+
+app.all('*', (req, res) => {
+    const handleRequest = req.nextApp.getRequestHandler();
+    const parsedUrl = parse(req.url, true);
+
+    return handleRequest(req, res, parsedUrl);
+});
 
 app.use((err: Error, _req: Request, res: Response, _next: Next) => {
-  console.error(err.stack);
+    console.error(err.stack);
 
-  res.sendStatus(500);
+    res.sendStatus(500);
 });
 
 db.authenticate()
-  .then(() => console.info('database connected'))
-  .catch((err: any) => {
-    console.info(err);
-  });
+    .then(() => console.info('database connected'))
+    .catch((err: any) => {
+        console.info(err);
+    });
 
-hbs.registerHelper('if_eq', function(this: any, a, b, opts) {
-    if (a === b) {
-        return opts.fn(this);
-    } else {
-        return opts.inverse(this);
-    }
-});
+nextApp.prepare().then(() => {
+    const _port = config.get('port');
 
-hbs.registerPartials(partialsDir, () => {
-  const _port = config.get('port');
-
-  app.listen(_port, () => {
-      console.info(`Server started on ${_port}`);
-      console.info(`Open http://localhost:${_port}/`);
-  });
+    app.listen(_port, () => {
+        console.info(`Server started on ${_port}`);
+        console.info(`Open http://localhost:${_port}/`);
+    });
 });

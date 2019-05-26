@@ -1,7 +1,15 @@
-import { AllowNull, BelongsToMany, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+    AllowNull,
+    BelongsToMany,
+    Column,
+    DataType,
+    Model,
+    PrimaryKey,
+    Table
+} from 'sequelize-typescript';
 
-import { Scene } from './Scene';
-import { SceneAchievement } from './SceneAchievement';
+import {Scene} from './Scene';
+import {SceneAchievement} from './SceneAchievement';
 
 @Table({
     tableName: 'achievements'

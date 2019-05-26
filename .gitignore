@@ -1,4 +1,3 @@
 /node_modules
 /dist
-/src/public/another
-/src/data
+/static/another

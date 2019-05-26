@@ -1,10 +1,22 @@
-import { AllowNull, BelongsTo,
-         BelongsToMany, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+    AllowNull,
+    BelongsTo,
+    BelongsToMany,
+    Column,
+    DataType,
+    Default,
+    ForeignKey,
+    Model,
+    PrimaryKey,
+    Table
+} from 'sequelize-typescript';
 
 import config from 'config';
-import { AdventureHashtag } from './AdventureHashtag';
-import { Hashtag } from './Hashtag';
-import { Scene } from './Scene';
+import {AdventureHashtag} from './AdventureHashtag';
+import {Hashtag} from './Hashtag';
+import {Scene} from './Scene';
+import {User} from './User';
+import {UserAdventure} from './UserAdventure';
 
 const picture = config.get('defaultPicture');
 
@@ -34,6 +46,9 @@ export class Adventure extends Model<Adventure> {
 
     @BelongsToMany(() => Hashtag, () => AdventureHashtag)
     hashtags: Hashtag[];
+
+    @BelongsToMany(() => User, () => UserAdventure)
+    users: User[];
 
     @BelongsTo(() => Scene)
     firstScene!: Scene;

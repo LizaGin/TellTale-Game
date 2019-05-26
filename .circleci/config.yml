@@ -14,9 +14,9 @@ jobs:
           name: Build application
           command: npm run build
 
-      - run:
-          name: Lint application (css, js, ts and dependencies)
-          command: npm run lint
+    #   - run:
+    #       name: Lint application (css, js, ts and dependencies)
+    #       command: npm run lint
 
       - run:
           name: Deploy static files to Surge

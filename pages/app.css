@@ -7,11 +7,20 @@ a
     color: #000;
 }
 
+/* Стили для шапки */
+
 .main-header
 {
     display: flex;
-    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 100%; */
     border-bottom: 1px solid #b1aeae;
+}
+
+.main-title
+{
+    display: inline-flex;
 }
 
 .main-icon 
@@ -24,7 +33,7 @@ a
 .main-headline
 {
     font-size: 56px;
-    margin:  5px 0 30px  0;
+    margin: 0 30px  0;
 }
 
 .main-headline a span
@@ -39,14 +48,6 @@ main
     margin: auto;
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
-}
-
-/* стили для строки поиска */
-
-.search-line
-{
-    display: flex
-    
 }
 
 /* стили для приключений (главная страница) */
@@ -70,6 +71,7 @@ main
     font-size: 35px;
     font-family: 'Gabriela', sans-serif;
     margin: 0 0 15px ;
+    cursor: pointer;
 }
 
 .adventure-text
@@ -78,13 +80,7 @@ main
     font-size: 15px;
 }
 
-/* стили для хэштегов */
-
-.hashtag
-{
-    font-size: 45px;
-    margin: 30px 70px 0;
-}
+/* стили для хэштегов приключения */
 
 .adventure-hashtags
 {
@@ -108,10 +104,46 @@ main
     opacity: 1;
 }
 
-.adventure-hashtag-link
+.adventure-hashtag-text
 {
     color: #fff;
-    font-size: 25px;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* стили для юзеров приключения */
+
+.adventure-users
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    max-width: 600px;
+}
+
+.adventure-user
+{
+    position: relative;
+}
+
+.adventure-user-picture
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.adventure-user-count
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    text-align: right;
 }
 
 /* стили для сцен */
@@ -182,8 +214,8 @@ main
 {
     background-color: #474646;
     opacity: .8;
-    padding: 15px;
-    margin: 0 30px;
+    padding: 10px;
+    margin: 0 20px;
 }
 
 .scene-action:hover
@@ -191,10 +223,10 @@ main
     opacity: 1;
 }
 
-.scene-action-link
+.scene-action-text
 {
     color: #fff;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 /* стили для достижений сцен */
@@ -232,17 +264,9 @@ main
     max-width: 200px;
 }
 
-/* Ошибка */
-
-.error-container
-{
-    font-size: 50px;
-    font-family: 'Gabriela', sans-serif;
-}
-
 /* Строки поиска */
 
-.finder
+.search-form
 {
     margin: auto;
     width: 90%;
@@ -255,25 +279,14 @@ main
     margin: 20px 0;
 }
 
-.search-line-adventure
+.search-line.adventure
 {
     padding: 0 0 0 10px;
     margin: 0 20px;
     height: 50px;
-    flex: 7;
+    flex: 6;
     font-size: 20px;
     border: 1px solid #d3d3d3;
-}
-
-.search-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    width: 120px;
-    font-family: 'Roboto', sans-serif;
-    background-color: #f39ac1;
-    color: #fff;
-    cursor: pointer;
 }
 
 .search-line-hashtag
@@ -327,4 +340,88 @@ main
     color: #fff;
     background-color: #3ae;
     padding: 10px;
+}
+
+/* Переиспользуемые стили */
+
+.main-text
+{
+    font-size: 45px;
+    margin: 30px 70px 0;
+    font-family: 'Gabriela', sans-serif;
+}
+
+
+.link-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f39ac1;
+    color: #fff;
+    cursor: pointer;
+}
+
+.link-button.grey
+{
+    background-color: #bbb6b6;
+}
+
+.link-button.auth:disabled
+{
+    cursor: default;
+    opacity: .7;
+}
+
+.link-button.in-header
+{
+    margin-right: 15px;
+}
+
+.user-menu
+{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+}
+
+.user-avatar
+{
+    border-radius: 100px;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.username
+{
+    font-size: 30px;
+    font-family: 'Gabriela', sans-serif;
+    display: inline-block;
+    margin-right: 50px; 
+}
+
+.auth-input
+{
+    height: 30px;
+    font-size: 20px;
+    width: 320px;
+    display: block;
+    margin: 10px;
+    padding-left: 10px;
+}
+
+/*Окно с ошибкой  */
+.warning-wrapper
+{
+    max-width: 400px;
+    height: 50px;
+    border: 3px solid #ff6ddf;
+    padding: 10px;
+}
+
+.warning-sign
+{
+    font-size: 20px;
+    color: #ff6ddf;
 }

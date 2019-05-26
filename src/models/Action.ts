@@ -1,5 +1,13 @@
-import { AllowNull, Column, DataType, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { Scene } from './Scene';
+import {
+    AllowNull,
+    Column,
+    DataType,
+    ForeignKey,
+    Model,
+    PrimaryKey,
+    Table
+} from 'sequelize-typescript';
+import {Scene} from './Scene';
 
 @Table({
     tableName: 'actions'
